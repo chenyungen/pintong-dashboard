@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>品榕公幼入園儀表板</title>
+<style>
+body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:#f4f6fa;color:#222;line-height:1.6}
+header{background:linear-gradient(135deg,#3b6fd8,#7a4fd1);color:#fff;padding:24px 16px;text-align:center}
+header h1{margin:0 0 8px;font-size:1.6rem}
+.cd{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.cd div{background:rgba(255,255,255,.18);border-radius:10px;padding:8px 14px;min-width:64px}
+.cd b{display:block;font-size:1.6rem}
+.tag{display:inline-block;background:#ffb020;color:#222;border-radius:6px;padding:0 6px;font-size:.8rem;font-weight:bold}
+.ok{background:#2fae60;color:#fff}.pend{background:#bbb;color:#222}
+main{max-width:1100px;margin:auto;padding:16px}
+section{background:#fff;border-radius:12px;padding:16px 18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+h2{margin-top:0;font-size:1.2rem;border-left:5px solid #3b6fd8;padding-left:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{border:1px solid #e1e5ee;border-radius:10px;padding:12px;font-size:.92rem}
+.card h3{margin:0 0 6px;font-size:1rem}
+.tl{list-style:none;padding:0;margin:0}.tl li{border-left:3px solid #7a4fd1;padding:4px 0 8px 12px;position:relative}
+.tl li:before{content:"";position:absolute;left:-8px;top:10px;width:13px;height:13px;border-radius:50%;background:#7a4fd1}
+blockquote{margin:8px 0;padding:8px 12px;background:#f0f3ff;border-left:4px solid #3b6fd8}
+.todo label{display:block;padding:6px 0;border-bottom:1px dashed #ddd}
+.todo input{transform:scale(1.3);margin-right:8px}
+.todo input:checked+span{text-decoration:line-through;color:#888}
+a{color:#3b6fd8;word-break:break-all}small{color:#666}
+.src li{font-size:.85rem;margin-bottom:4px}
+.qp{border:2px solid #2fae60;background:#f2fbf5}.warn{background:#ffe1e1;color:#a00}
+table{border-collapse:collapse;width:100%;font-size:.88rem}td,th{border:1px solid #dde;padding:6px;vertical-align:top}th{background:#eef2fb}.tw{overflow-x:auto}
+.star{border:3px solid #e0a800!important;background:#fff8dc!important;box-shadow:0 0 0 3px rgba(224,168,0,.25)}.gold{background:#e0a800;color:#fff}
+.focus{background:#fff8dc;border:2px solid #e0a800;border-radius:10px;padding:8px 12px;margin-bottom:16px;font-weight:bold}
+/* dark theme */
+body{background:#0f1420;color:#e6e9f0}
+header{background:linear-gradient(135deg,#1e3a7a,#4a2a85)}
+section{background:#1a2132;box-shadow:0 1px 6px rgba(0,0,0,.5)}
+h2{border-left-color:#6b9bff;color:#f2f4f8}
+.card{border-color:#2e3850;background:#202a3e}
+.qp{border:2px solid #34c472;background:#173326}
+.star{border:3px solid #ffc83d!important;background:#3a3015!important;box-shadow:0 0 0 3px rgba(255,200,61,.35)}
+.focus{background:#3a3015;border-color:#ffc83d;color:#ffe08a}
+.gold{background:#ffc83d;color:#1a1a1a}
+.ok{background:#2fae60;color:#fff}.pend{background:#4a5470;color:#e6e9f0}
+.warn{background:#5c1f24;color:#ffb3b8}
+blockquote{background:#22304d;border-left-color:#6b9bff}
+a{color:#8fb8ff}small{color:#a5adbf}
+.tl li{border-left-color:#9b7bff}.tl li:before{background:#9b7bff}
+.todo label{border-bottom-color:#2e3850}.todo input:checked+span{color:#7c8498}
+td,th{border-color:#2e3850}th{background:#24304a}
+/* ink-blue accents */
+header{background:linear-gradient(135deg,#0f2742 0%,#1e3a5f 55%,#16324f 100%);border-bottom:1px solid #2a4a72;position:relative}
+.cd div{background:rgba(143,184,255,.12);border:1px solid rgba(143,184,255,.2)}
+.tl li{border-left-color:#4f86c6}.tl li:before{background:#4f86c6}
+#themeBtn{position:absolute;top:12px;right:12px;padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;font-size:.9rem;cursor:pointer}
+/* light theme */
+body.light{background:#f4f6fa;color:#1f2633}
+body.light header{background:linear-gradient(135deg,#eaf2fc 0%,#dbe8f8 55%,#e6eff9 100%);color:#13294a;border-bottom:1px solid #c6d6ec}
+body.light header small{color:#4a5a73!important}
+body.light .cd div{background:#fff;border:1px solid #c6d6ec}
+body.light #themeBtn{background:#fff;color:#13294a;border-color:#9fb6d6}
+body.light section{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+body.light h2{color:#13294a;border-left-color:#1e3a5f}
+body.light .card{background:#fff;border-color:#dde3ee}
+body.light .qp{border:2px solid #2fae60;background:#f2fbf5}
+body.light .star{border:3px solid #d49b00!important;background:#fff6d6!important;box-shadow:0 0 0 3px rgba(212,155,0,.25)}
+body.light .focus{background:#fff6d6;border-color:#d49b00;color:#6b4e00}
+body.light .gold{background:#d49b00;color:#fff}
+body.light .pend{background:#d5d9e2;color:#333}
+body.light .warn{background:#ffe1e1;color:#a00}
+body.light blockquote{background:#eef3fb;border-left-color:#1e3a5f}
+body.light a{color:#1d5fbf}body.light small{color:#5a6475}
+body.light .todo label{border-bottom-color:#ddd}body.light .todo input:checked+span{color:#888}
+body.light td,body.light th{border-color:#dde3ee}body.light th{background:#eef2fb}
+#dtab th[data-c]{cursor:pointer}.leaflet-popup-content{color:#222}.darktiles{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6)}
+.lotto{margin-top:10px;padding:8px 10px;border-radius:8px;border:1px dashed #6b9bff;background:#1c2a44;font-size:.85rem}
+body.light .lotto{background:#eef4fd;border-color:#1e3a5f}
+/* === design pass === */
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-size:16px;line-height:1.7}
+h2{font-size:1.3rem;margin-bottom:12px}
+.card{font-size:.95rem;line-height:1.65}
+.card h3{font-size:1.08rem}
+.dist{display:inline-block;margin:2px 0 6px;padding:2px 8px;border-radius:6px;background:rgba(107,155,255,.15);font-size:.85rem;font-weight:600}
+body.light .dist{background:#e6eefb;color:#13294a}
+#nav{position:sticky;top:0;z-index:1000;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:rgba(15,20,32,.95);border-bottom:1px solid #2a4a72;-webkit-overflow-scrolling:touch}
+body.light #nav{background:rgba(255,255,255,.96);border-bottom-color:#c6d6ec}
+#nav a{flex:0 0 auto;padding:8px 12px;border-radius:18px;text-decoration:none;font-size:.9rem;background:#22304d;color:#dbe6ff;min-height:20px}
+body.light #nav a{background:#eef3fb;color:#13294a}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.85rem;margin:0 0 14px;padding:8px 12px;border-radius:10px;background:rgba(127,140,170,.12)}
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.gl{border-radius:10px;padding:12px 14px;background:#22304d;border:1px solid #2e3850}
+body.light .gl{background:#f3f7fd;border-color:#dde3ee}
+.gl .k{font-size:.8rem;opacity:.85;font-weight:700;letter-spacing:.05em}
+.gl .v{font-size:1.15rem;font-weight:700;margin-top:4px}
+.big{font-size:2rem;font-weight:800;color:#5ee08f;line-height:1.2}
+body.light .big{color:#137a3e}
+.savegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.save{border-radius:10px;padding:12px 14px;border:2px solid #2fae60;background:rgba(47,174,96,.12)}
+.bars{margin:10px 0}.bar{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:.9rem}
+.bar .lab{flex:0 0 120px}.bar .tr{flex:1;background:rgba(127,140,170,.18);border-radius:6px;height:26px;position:relative}
+.bar .fill{height:100%;border-radius:6px}.bar .val{flex:0 0 90px;text-align:right;font-weight:700}
+details.fold>summary{cursor:pointer;padding:12px 14px;border-radius:8px;background:rgba(127,140,170,.15);font-weight:700;min-height:24px;list-style-position:inside}
+details.fold[open]>summary{margin-bottom:12px}
+#themeBtn{min-height:40px;font-size:.95rem}
+.todo label{padding:10px 0;font-size:1rem}
+.cand li{margin-bottom:6px}
+@media (max-width:600px){
+ header h1{font-size:1.3rem;padding-top:40px}
+ main{padding:10px}section{padding:14px 12px}
+ .grid,.glance,.savegrid{grid-template-columns:1fr}
+ .bar .lab{flex-basis:80px}.bar .val{flex-basis:70px}
+ #map{height:360px!important}
+ .cd div{min-width:56px;padding:6px 10px}
+ table{min-width:560px}
+}
+</style><link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head><body>
+<header><button id="themeBtn" type="button">☀️ 淺色 / 🌙 深色</button><h1>品榕（114/10/4生）公幼入園儀表板</h1>
+<div>距 117學年度 2歲專班 第一次登記 <span class="tag">推估</span> 2028-03-06 08:30</div>
+<div class="cd" id="cd"><div><b id="d">-</b>天</div><div><b id="h">-</b>時</div><div><b id="m">-</b>分</div><div><b id="s">-</b>秒</div></div>
+<small style="color:#eef">推估依據：115學年度第一次登記為 115/3/6–3/10；117學年度實際日期以官方簡章為準</small></header>
+<nav id="nav"><a href="#glance">總覽</a><a href="#cand">候選</a><a href="#fees">學費</a><a href="#time">時程</a><a href="#map">地圖距離</a><a href="#pub">公幼</a><a href="#priv">私幼</a><a href="#rules">規則</a><a href="#todo">待辦</a><a href="#src">來源</a></nav><main><div class="legend" id="legend"><b>圖例</b><span class="tag ok">2歲專班 ✔／準公共</span><span class="tag gold">⭐ 重點關注</span><span class="tag pend">待確認／一般私幼</span><span class="tag warn">⚠ 裁罰／疑慮</span><span class="tag">推估／估算</span></div><section id="glance"><h2>一眼看懂</h2><div class="glance">
+<div class="gl"><div class="k">⏳ 倒數（推估）</div><div class="v"><span id="gd">-</span> 天後：117學年度 2歲專班 第一次登記（約 2028/3/6）</div></div>
+<div class="gl"><div class="k">✅ 建議方案</div><div class="v">首選 文化國小附幼 2歲專班；備案 至美（準公共，收 2 歲）</div></div>
+<div class="gl"><div class="k">📍 離家最近</div><div class="v">沙崙國際高中附幼 0.88 km・開車約 2 分（2歲專班待確認）</div></div>
+<div class="gl"><div class="k">💰 文化附幼 vs ⭐吉尼斯 一年少付</div><div class="v"><span class="big" style="font-size:1.5rem">約 11,870</span> 不搭車<br><span class="big" style="font-size:1.5rem">約 32,270</span> 雙趟接送</div></div>
+<div class="gl"><div class="k">👉 下一步</div><div class="v" id="nexttodo">—</div></div>
+</div></section><section id="cand"><h2>候選園所</h2><div class="focus">⭐ 重點關注：至善幼兒園（準公共，(06)2304455）、吉尼斯幼兒園（準公共，(06)3300708）</div>
+<ul class="cand">
+<li><b>文化國小附幼</b>（公立，2歲專班 ✔）🚗 7.3 km・約 9 分 — <a href="tel:063301666">(06)3301666#120</a>・<a href="#pub">看卡片與抽籤紀錄</a></li>
+<li><b>至美</b>（準公共，收 2 歲）🚗 5.03 km・約 8 分 — <a href="tel:063308558">(06)3308558</a>・<a href="#priv">看卡片</a></li>
+<li><b>⭐ 至善</b>（準公共，有收 2 歲；備取名單「幼班」年齡未證實）🚗 6.54 km・約 8 分・<a href="#priv">看卡片</a></li>
+<li><b>⭐ 吉尼斯</b>（準公共，收 2 歲待確認）🚗 7.04 km・約 9 分・<a href="#priv">看卡片</a></li>
+</ul></section><section id="fees"><h2>學費＋雜費總成本對照（第1胎）</h2>
+<div class="savegrid">
+<div class="save"><div>文化附幼 vs ⭐吉尼斯：一年少付（不搭車）</div><div class="big">約 11,870</div></div>
+<div class="save"><div>文化附幼 vs ⭐吉尼斯：一年少付（雙趟接送）</div><div class="big">約 32,270</div></div>
+</div>
+<div class="bars"><b>全年總成本（元）</b>
+<div class="bar"><span class="lab">文化附幼</span><span class="tr"><span class="fill" style="display:block;width:43.3%;background:#3b82f6"></span></span><span class="val">24,662</span></div>
+<div class="bar"><span class="lab">⭐吉尼斯 不搭車</span><span class="tr"><span class="fill" style="display:block;width:64.2%;background:#ffc83d"></span></span><span class="val">36,532</span></div>
+<div class="bar"><span class="lab">⭐吉尼斯 雙趟</span><span class="tr"><span class="fill" style="display:block;width:100%;background:#d49b00"></span></span><span class="val">56,932</span></div>
+<div class="bar"><span class="lab">⭐至善（下限）</span><span class="tr"><span class="fill" style="display:block;width:64.2%;background:repeating-linear-gradient(45deg,#ffc83d,#ffc83d 6px,#b8901f 6px,#b8901f 12px)"></span></span><span class="val">≥36,532</span></div></div>
+<div class="tw"><table><tr><th>項目（第1學期／全年）</th><th>文化國小附幼 2歲專班</th><th>⭐吉尼斯（準公共，收 2歲幼班）</th><th>⭐至善（準公共）</th></tr>
+<tr><td>學費</td><td>4,800／9,500</td><td>18,000／36,000<br><small>原價每學期 65,514；準公共每月 3,000</small></td><td>18,000／36,000<br><small>幼園通 114 原價每月 11,008</small></td></tr>
+<tr><td>延托</td><td>7,392／14,630 <span class="tag">預估</span><br><small>預估正課 16:00 下課，至 18:00；每小時 35 元×2h×22 天</small></td><td>0<br><small>18:00 前不收；之後每半小時 100，月上限 2,200</small></td><td><span class="tag pend">未公布</span></td></tr>
+<tr><td>接送</td><td>0 <span class="tag">預估</span><br><small>預估無幼童車</small></td><td>不搭 0／雙趟 1,700/月＝10,200／20,400</td><td><span class="tag pend">未公布</span><br><small>有 1 台專用車</small></td></tr>
+<tr><td>保險</td><td>266／532</td><td>266／532</td><td>266／532</td></tr>
+<tr><td>家長會費</td><td><span class="tag pend">未公布</span><br><small>參考永信 100/學期</small></td><td>0</td><td><span class="tag pend">未公布</span></td></tr>
+<tr><td><b>合計</b></td><td><b>12,458／24,662</b></td><td><b>不搭車 18,266／36,532<br>雙趟接送 28,466／56,932</b></td><td><b>≥18,266／≥36,532</b>（下限）</td></tr></table></div>
+<ul>
+<li>延到 18:30：公幼每天 +20（第1學期 +2,112）；吉尼斯第1學期最多 +13,200。</li>
+<li>⭐至善：115學年度新生入園<b>第二階段備取名單（班別：幼班）排到備取 048</b>（115/3/20 公告，已核對 PDF），競爭激烈。已確認此網站為歸仁區民生北街130號、(06)2304455 的至善（東區傑尼爾至善另有網站 geniuszusun.topschool.tw）。<span class="tag pend">幼班＝幾歲：未證實</span><small>（幼園通列有至善 114學年度「2 歲」收費 $10,449/月，顯示有收 2 歲；但備取名單只寫「班別：幼班」，無出生日期／年齡欄，園網未公開 115 簡章，故「幼班」是否＝2歲班仍無法確認）</small></li>
+</ul>
+<p><small>假設：每月 22 天；公幼學期以 4.8／4.7 個月計；準公共 6 個月/學期；不含寒暑假加托與校外教學。<br>來源：<a href="https://edu.law.moe.gov.tw/LawContent.aspx?id=FL039672">教育部法規</a>・<a href="https://www.cna.com.tw/news/aloc/202301300216.aspx">中央社</a>・<a href="https://www.cathaylife.com.tw/official/student/announcement/06">國泰人壽學生保險</a>・<a href="https://new-genius.topschool.tw/FilePools/1214/Editor/1fc06360-ddea-4d66-ba63-6554054f5191.pdf">吉尼斯收費 PDF</a>・<a href="https://new-genius.topschool.tw/Course/Apply-Course">吉尼斯課程／招生</a>・<a href="https://zusun.topschool.tw/FilePools/1997/Editor/343c5084-30c9-4eba-a003-513e3d68b0e6.pdf">至善備取名單</a>・<a href="https://www.kindyinfo.com/preschool/7a2f3ea6-3041-52c8-9659-5c13b1dae804">幼園通 至善</a>・<a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?ncsn=8">文化附幼公告</a></small></p></section>
+<section id="cmp"><h2>公幼 vs 準公共 vs 一般私幼</h2><div class="tw"><table>
+<tr><th></th><th>公立幼兒園</th><th>準公共幼兒園</th><th>一般私立幼兒園</th></tr>
+<tr><td>家長每月繳費上限</td><td>第1胎 ≤1,000；第2胎起免費</td><td>第1胎 ≤3,000；第2胎 ≤2,000；第3胎以上 ≤1,000</td><td>依園所收費（無上限）</td></tr>
+<tr><td>政府補助</td><td colspan="2">園方直接減免；就讀期間<b>不能</b>領育兒津貼。上限含學費＋雜費＋代收代辦費，不含課後留園、保險、交通等；低收／中低收免繳</td><td>2–未滿5歲育兒津貼：第1胎 5,000／第2胎 6,000／第3胎 7,000 元/月（自己帶也可領）</td></tr>
+<tr><td>招生方式</td><td>全市統一時程（115學年度 3/6–3/10 登記、3/12 抽籤），限登記 1 園</td><td colspan="2">各園自訂簡章、直接向園所登記；超額時各園自行公開抽籤。例：至美 115學年度 2/6 前公告簡章、3/6–3/10 優先生、3/16–3/18 一般生、3/20 抽籤（各園時程不同）</td></tr>
+</table></div>
+<p><small>準公共合作費用上限（114學年度以後）：2歲以上未滿3歲班 ≤14,700 元/月；3歲以上班依規模 12,500–13,500 元/月（教育部作業要點第4點）。</small></p></section><section id="elig"><h2>入園資格</h2>
+<p>✅ <b>117學年度（2028/8 入學）2歲專班</b>：收 114/9/2–115/9/1 出生 → 品榕 114/10/4 生 <b>符合</b>（依 115學年度 2歲專班 112/9/2–113/9/1 推算）。</p>
+<p>↪ 備案：<b>118學年度 小班（3歲，3-5歲班）</b>。</p></section><section id="time"><h2>時程 <span class="tag">推估 2028</span></h2>
+<p><small>以 115學年度 實際日期平移至 2028（117年）；星期與確切日期以 117學年度簡章為準。</small></p>
+<ul class="tl">
+<li><b>~2028/1–2</b>　留意各園 117學年度簡章公告（115學年度簡章約 2/6 公告）</li>
+<li><b>~3/6–3/10</b>　第一次登記（線上 08:30–15:30 截止；現場依各園簡章，歸仁各園 115學年度多為 3/9–3/10）</li>
+<li><b>~3/12</b>　第一次抽籤（09:30 起）</li>
+<li><b>~3/12–3/13</b>　第一次報到</li>
+<li><b>~3/14–3/18</b>　第二次（未足額）登記</li>
+<li><b>~3/20</b>　第二次抽籤</li>
+<li><b>~3/20–3/23</b>　第二次報到</li></ul></section><section id="map"><h2>地圖與距離 <span class="tag">估算</span></h2>
+<p><small>中心：臺南市歸仁區高發二路311號F棟（6F-3）。地圖需連網（Leaflet＋OpenStreetMap 圖磚；深色模式為濾鏡反轉）。座標：ArcGIS World Geocoder（園所皆為門牌點位 PointAddress；住家為路段內插 StreetAddress，約略位置）。距離／時間：routing.openstreetmap.de（OSRM，OSM 路網）2026-10-21 預先計算，<b>不含路況、紅綠燈</b>，僅供參考。仁愛以沙崙北路550號定位（另址成功三街255號經查相距約 100 m）。</small></p>
+<div id="map" style="height:480px;border-radius:10px;margin-bottom:10px"></div>
+<div class="tw"><table id="dtab"><thead><tr><th>園所</th><th>類型</th><th data-c="2">開車 km ⇅</th><th data-c="3">開車 分 ⇅</th><th data-c="4">步行 km ⇅</th><th data-c="5">步行 分 ⇅</th></tr></thead><tbody><tr><td>沙崙國際高中附幼</td><td>公立</td><td data-v="0.88">0.88</td><td data-v="2">2</td><td data-v="0.89">0.89</td><td data-v="12">12</td></tr><tr><td>大潭國小附幼</td><td>公立</td><td data-v="2.87">2.87</td><td data-v="7">7</td><td data-v="2.85">2.85</td><td data-v="39">39</td></tr><tr><td>新才華</td><td>準公共</td><td data-v="4.3">4.3</td><td data-v="6">6</td><td data-v="4.31">4.31</td><td data-v="58">58</td></tr><tr><td>仁愛</td><td>準公共</td><td data-v="4.58">4.58</td><td data-v="8">8</td><td data-v="4.18">4.18</td><td data-v="56">56</td></tr><tr><td>紅瓦厝國小附幼</td><td>公立</td><td data-v="4.75">4.75</td><td data-v="9">9</td><td data-v="4.69">4.69</td><td data-v="63">63</td></tr><tr><td>至美</td><td>準公共</td><td data-v="5.03">5.03</td><td data-v="8">8</td><td data-v="5.16">5.16</td><td data-v="69">69</td></tr><tr><td>歸南國小附幼</td><td>公立</td><td data-v="5.06">5.06</td><td data-v="8">8</td><td data-v="5.44">5.44</td><td data-v="73">73</td></tr><tr><td>育仁</td><td>一般私幼</td><td data-v="5.06">5.06</td><td data-v="8">8</td><td data-v="5.45">5.45</td><td data-v="73">73</td></tr><tr><td>中美</td><td>一般私幼</td><td data-v="5.31">5.31</td><td data-v="9">9</td><td data-v="5.32">5.32</td><td data-v="71">71</td></tr><tr><td>媬能</td><td>準公共</td><td data-v="5.81">5.81</td><td data-v="9">9</td><td data-v="4.67">4.67</td><td data-v="63">63</td></tr><tr><td>歸仁國小附幼</td><td>公立</td><td data-v="6.17">6.17</td><td data-v="9">9</td><td data-v="5.52">5.52</td><td data-v="74">74</td></tr><tr><td>至善</td><td>準公共 ⭐重點關注</td><td data-v="6.54">6.54</td><td data-v="8">8</td><td data-v="5.6">5.6</td><td data-v="75">75</td></tr><tr><td>吉尼斯</td><td>準公共 ⭐重點關注</td><td data-v="7.04">7.04</td><td data-v="9">9</td><td data-v="5.82">5.82</td><td data-v="78">78</td></tr><tr><td>文化國小附幼</td><td>公立</td><td data-v="7.3">7.3</td><td data-v="9">9</td><td data-v="5.89">5.89</td><td data-v="79">79</td></tr><tr><td>歸園</td><td>一般私幼</td><td data-v="7.46">7.46</td><td data-v="10">10</td><td data-v="5.61">5.61</td><td data-v="75">75</td></tr><tr><td>巨光</td><td>一般私幼</td><td data-v="7.47">7.47</td><td data-v="10">10</td><td data-v="6.12">6.12</td><td data-v="82">82</td></tr><tr><td>佳音</td><td>一般私幼</td><td data-v="8.49">8.49</td><td data-v="10">10</td><td data-v="8.38">8.38</td><td data-v="112">112</td></tr><tr><td>保西國小附幼</td><td>公立</td><td data-v="9.48">9.48</td><td data-v="11">11</td><td data-v="8.18">8.18</td><td data-v="110">110</td></tr></tbody></table></div>
+<p><small>點表頭可排序；預設依開車距離由近到遠。</small></p></section><section id="pub"><h2>歸仁區公立幼兒園（7間）</h2>
+<p><small>歸仁區<b>無非營利幼兒園</b>。核定人數為第三方整理（comptw，源自全國教保資訊網）。</small></p>
+<div class="grid">
+<div class="card"><h3>文化國小附幼 <span class="tag ok">2歲專班 ✔</span></h3><div class="dist">🚗 7.3 km・約 9 分　🚶 5.89 km・約 79 分</div>文化街二段136號<br/>☎ <a href="tel:063301666">(06)3301666#120</a><br/>核定 68 人；115學年度第二次招生時 2專尚餘 5、3-5歲尚餘 8<br/><a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?nsn=8067">簡章公告</a><div class="lotto"><b>📋 2歲專班抽籤紀錄</b><br/>
+<b>115學年度</b>（2歲專班似為本年度首開；114學年度簡章僅 3-5歲，<i>未查證</i>）<br/>
+• 3/12 第一階段公告「全部錄取」<br/>• 3/14 第二次招生：2歲專班尚餘 5 名額（3-5歲 8）<br/>• 3/20 第二階段後仍有少數名額，3/24 起開放未設籍臺南市幼兒<br/>
+<b>推斷（非官方）：</b>實質錄取率 100%<br/><b>未公布：</b>總名額、登記人數、中籤率<br/>
+<small>鄰近參考：市立第一幼兒園 115 學年度 2歲專班 24 人全額錄取</small><br/>
+<small>來源：<a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?ncsn=8">文化附幼公告</a>・<a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?nsn=8067">115簡章</a>・<a href="https://class.tn.edu.tw/modules/tad_web/news.php?NewsID=75416&amp;WebID=5651">市立第一幼兒園</a>・<a href="https://kid.tn.edu.tw/KidOnline/">招生資訊網</a></small></div></div>
+<div class="card"><h3>沙崙國際高中附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 0.88 km・約 2 分　🚶 0.89 km・約 12 分</div>歸仁六路2號<br/>☎ (06)3032062#2001<br/>核定 60 人（簡章標題為「3-5歲」）<br/><a href="https://kid.slsh.tn.edu.tw/">官網</a></div>
+<div class="card"><h3>紅瓦厝國小附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 4.75 km・約 9 分　🚶 4.69 km・約 63 分</div>信義南路98號（原市立歸仁幼兒園，115/8/1 改制）<br/>☎ 未查到<br/>核定 90 人<br/><a href="https://schoolweb.tn.edu.tw/~hwces_www/modules/school/index.php?department_id=8">幼兒園頁</a></div>
+<div class="card"><h3>歸仁國小附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 6.17 km・約 9 分　🚶 5.52 km・約 74 分</div>文化街一段100號<br/>☎ (06)3304761（舊資料）<br/>核定 68 人<br/>未找到簡章頁</div>
+<div class="card"><h3>保西國小附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 9.48 km・約 11 分　🚶 8.18 km・約 110 分</div>中正北路三段60號<br/>☎ (06)2309683<br/>核定 68 人<br/><a href="https://schoolweb.tn.edu.tw/~bsps_www/modules/school/index.php?content_id=36&amp;department_id=6&amp;from_op=school_department_show&amp;page_id=52&amp;type=news">簡章公告</a></div>
+<div class="card"><h3>歸南國小附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 5.06 km・約 8 分　🚶 5.44 km・約 73 分</div>民權南路171號<br/>☎ (06)2304930#733（舊資料）<br/>核定 68 人<br/><a href="https://gnes4all.gnes.tn.edu.tw/modules/tadnews/index.php?nsn=8628">簡章公告</a></div>
+<div class="card"><h3>大潭國小附幼 <span class="tag pend">待確認</span></h3><div class="dist">🚗 2.87 km・約 7 分　🚶 2.85 km・約 39 分</div>中正南路三段97號<br/>☎ (06)2782303<br/>核定 30 人</div>
+</div></section><section id="priv"><h2>歸仁區私立幼兒園（11間）</h2>
+<p><small>名單／核定人數來自 comptw（源自全國教保資訊網）；準公共依臺南市教育局 <b>114學年度第1學期</b>準公共名單（歸仁 7 間）＋幼園通「113-115 符合準公共」標示。115學年度官方名單未取得，<b>未直接查證 ap.ece.moe.edu.tw</b>。「收費」為幼園通所列 114學年度全額月費（準公共家長實付有上限，見下表）；comptw 月費數字口徑不明。標「舊資料」電話來自約 2010 年代舊網站。</small></p>
+<div class="grid"><div class="card qp star"><h3>⭐ 至善 <span class="tag ok">準公共</span> <span class="tag gold">重點關注</span></h3><div class="dist">🚗 6.54 km・約 8 分　🚶 5.6 km・約 75 分</div>民生北街130號<br/>☎ (06)2304455<br/>核定 420 人<br/>2歲：有收（幼園通列 114 學年度 2歲收費）；<span class="tag pend">幼班＝幾歲：未證實</span><br/>收費：未查到官方數字<br/><a href="https://zusun.topschool.tw/">官網</a></div><div class="card qp star"><h3>⭐ 吉尼斯 <span class="tag ok">準公共</span> <span class="tag gold">重點關注</span></h3><div class="dist">🚗 7.04 km・約 9 分　🚶 5.82 km・約 78 分</div>民權八街43號<br/>☎ (06)3300708<br/>核定 263 人<br/>2歲：待確認<br/>收費：114學年度 $10,664/月（幼園通）<br/><a href="https://www.kindyinfo.com/preschool/a9f6694e-80e7-543d-a6ed-44e60fd45c63">幼園通頁</a></div><div class="card qp"><h3>至美 <span class="tag ok">準公共</span></h3><div class="dist">🚗 5.03 km・約 8 分　🚶 5.16 km・約 69 分</div>民權南路191巷45號<br/>☎ (06)3308558<br/>核定 90 人<br/>2歲：✅ 收（115學年度可招 2歲 16 名、小班 6 名）<br/>收費：114學年度 $10,835/月（幼園通）<br/><a href="https://zumei.topschool.tw/FilePools/2059/SCHDM01/2026020611433895F65140.pdf">115學年度簡章</a>｜<a href="https://www.kindyinfo.com/preschool/e4009984-90b3-53da-b187-7ceeb93e82bd">幼園通頁</a></div><div class="card qp"><h3>仁愛 <span class="tag ok">準公共</span></h3><div class="dist">🚗 4.58 km・約 8 分　🚶 4.18 km・約 56 分</div>沙崙北路550號（幼園通列成功三街255號，待確認）<br/>☎ (06)3303222<br/>核定 90 人<br/>2歲：待確認<br/>收費：114學年度 $9,784/月（幼園通）<br/><a href="https://www.kindyinfo.com/preschool/11bf8df2-ea1a-5311-91b8-74af509d7630">幼園通頁</a></div><div class="card qp"><h3>媬能 <span class="tag ok">準公共</span></h3><div class="dist">🚗 5.81 km・約 9 分　🚶 4.67 km・約 63 分</div>公園路157巷60號<br/>☎ (06)3309199<br/>核定 40 人<br/>2歲：待確認<br/>收費：114學年度 $11,406/月（幼園通）<br/><a href="https://www.kindyinfo.com/preschool/cba148f7-14c4-5edb-a253-9bf761a4079a">幼園通頁</a></div><div class="card qp"><h3>新才華 <span class="tag ok">準公共</span></h3><div class="dist">🚗 4.3 km・約 6 分　🚶 4.31 km・約 58 分</div>中正南路一段588號<br/>☎ (06)3305672<br/>核定 221 人<br/>2歲：待確認<br/>收費：未查到官方數字<br/>—</div></div><details class="fold"><summary>一般私幼（未加入準公共）5 間：展開／收合</summary><div class="grid"><div class="card"><h3>中美 <span class="tag pend">一般私幼</span></h3><div class="dist">🚗 5.31 km・約 9 分　🚶 5.32 km・約 71 分</div>大順街120號<br/>☎ (06)3307731<br/>核定 232 人<br/>2歲：待確認<br/>收費：114學年度 $11,279/月（幼園通）<br/><span class="tag warn">⚠ 列於114-1準公共名單，但幼園通標「私立」；comptw 列裁罰紀錄（含停止招生1）</span><br/><a href="https://www.kindyinfo.com/preschool/9ea6e233-050e-589b-afe9-dc04e07ab73c">幼園通頁</a></div><div class="card"><h3>育仁 <span class="tag pend">一般私幼</span></h3><div class="dist">🚗 5.06 km・約 8 分　🚶 5.45 km・約 73 分</div>民權南路116、118、116之1號<br/>☎ (06)2390433（舊資料）<br/>核定 271 人<br/>2歲：待確認<br/>收費：comptw $12,157（定義不明）<br/><span class="tag warn">comptw 裁罰 3</span><br/>—</div><div class="card"><h3>歸園 <span class="tag pend">一般私幼</span></h3><div class="dist">🚗 7.46 km・約 10 分　🚶 5.61 km・約 75 分</div>文化街二段55號<br/>☎ (06)2305739（舊資料）<br/>核定 343 人<br/>2歲：待確認<br/>收費：comptw $11,795（定義不明）<br/><span class="tag warn">comptw 裁罰 2</span><br/>—</div><div class="card"><h3>巨光 <span class="tag pend">一般私幼</span></h3><div class="dist">🚗 7.47 km・約 10 分　🚶 6.12 km・約 82 分</div>文化北街162號<br/>☎ (06)2303489（舊資料）<br/>核定 160 人<br/>2歲：待確認<br/>收費：comptw $14,462（定義不明）<br/>—</div><div class="card"><h3>佳音 <span class="tag pend">一般私幼</span></h3><div class="dist">🚗 8.49 km・約 10 分　🚶 8.38 km・約 112 分</div>大廟一街149號<br/>☎ (06)2712990（舊資料）<br/>核定 30 人<br/>2歲：待確認<br/>收費：comptw $4,950（定義不明）<br/>—</div></div></details></section><section id="rules"><h2>重要規則</h2><details class="fold"><summary>展開／收合：重要規則（登記限制、班級人數、直升條文）</summary><ul>
+<li>每位幼兒<b>限登記 1 園</b>，未簽切結放棄不得登記第 2 園。</li>
+<li>具<b>優先入園身分</b>者須<b>現場紙本登記</b>；一般生可線上或現場擇一。</li>
+<li>班級人數：2歲專班 8 或 16 人；3-5歲班 12 或 24 人（安置身障幼兒每名原則減收 2 名）。</li>
+<li>2歲專班錄取順序：二歲第一優先 → 二歲第二優先 → 二歲一般。</li>
+<li>非設籍臺南市幼兒：第二次招生後仍有缺額才招收。</li></ul>
+<h3 style="font-size:1rem">直升規則（2歲專班 → 3-5歲班）</h3>
+<blockquote>「已在園就讀之幼兒可直升該園繼續就讀，不必另行登記抽籤。」<br/><small>— 臺南市110學年度公立幼兒園新生入園注意事項 第七點(十三)</small></blockquote>
+<blockquote>「可招生名額為幼兒園預定招收人數-舊生直升人數-…後之缺額」；第二優先文件含「在園幼生之續讀調查表」<br/><small>— 博愛國小附幼 115學年度招生簡章（2專和3-5歲版）</small></blockquote>
+<p><span class="tag">可信度：中高</span> 直升條文原文出自 110 學年度版；115 學年度注意事項全文與文化附幼簡章 PDF 未取得；教育部層級規則未查證。建議向文化附幼確認。</p></details></section><section class="todo" id="todo"><h2>待辦清單 <small>（勾選會存在本機瀏覽器）</small></h2>
+<label><input data-k="t1" type="checkbox"/><span>致電文化附幼 <a href="tel:063301666">(06)3301666#120</a>，確認 2歲專班直升 3-5歲班與「續讀調查表」流程</span></label>
+<label><input data-k="t2" type="checkbox"/><span>2028 年 1–2 月留意 117學年度 招生簡章公告</span></label>
+<label><input data-k="t3" type="checkbox"/><span>確認其他歸仁區公幼是否開設 2歲專班</span></label>
+<label><input data-k="t4" type="checkbox"/><span>收藏招生登記網站：<a href="https://kid.tn.edu.tw/KidOnline/">https://kid.tn.edu.tw/KidOnline/</a></span></label>
+<label><input data-k="t5" type="checkbox"/><span>至美幼兒園 (06)3308558：確認 2歲班與 117學年度簡章時程</span></label>
+<label><input data-k="t6" type="checkbox"/><span>致電其他準公共園（吉尼斯、仁愛、媬能、至善、新才華）確認是否收 2 歲</span></label>
+<label><input data-k="t7" type="checkbox"/><span>至全國教保資訊網核對最新準公共名單與收費（含中美現況）</span></label>
+<label><input data-k="t8" type="checkbox"/><span>品榕滿 2 歲（2027/10/4）起可申請育兒津貼（若在家或讀一般私幼）</span></label>
+<label><input data-k="t9" type="checkbox"/><span>問至善延托／接送費 <a href="tel:062304455">(06)2304455</a></span></label>
+<label><input data-k="t10" type="checkbox"/><span>問文化附幼下課時間與家長會費 <a href="tel:063301666">(06)3301666#120</a></span></label>
+</section><section class="src" id="src"><h2>資料來源</h2><details class="fold"><summary>展開／收合：資料來源（全部連結）</summary><ol>
+<li><a href="https://kid.tn.edu.tw/KidOnline/">臺南市公共化幼兒園招生資訊網</a></li>
+<li><a href="https://kid.tn.edu.tw/KidOnline/Login/AnnounceInfo?AnnID=2">115學年度新增2歲專班名單公告</a></li>
+<li><a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?nsn=8067">文化附幼115學年度簡章公告</a></li>
+<li><a href="https://web.whes.tn.edu.tw/modules/tadnews/index.php?ncsn=8&amp;nsn=8177">文化附幼第二次招生公告</a></li>
+<li><a href="https://kid.slsh.tn.edu.tw/modules/tadnews/index.php?ncsn=2&amp;nsn=40">沙崙附幼115學年度簡章</a></li>
+<li><a href="https://gnes4all.gnes.tn.edu.tw/modules/tadnews/index.php?nsn=8628">歸南附幼簡章</a></li>
+<li><a href="https://schoolweb.tn.edu.tw/~bsps_www/modules/school/index.php?content_id=36&amp;department_id=6&amp;from_op=school_department_show&amp;page_id=52&amp;type=news">保西附幼簡章</a></li>
+<li><a href="https://schoolweb.tn.edu.tw/~hwces_www/modules/school/index.php?department_id=8">紅瓦厝國小幼兒園頁</a></li>
+<li><a href="https://www.grjh.tn.edu.tw/modules/school/index.php?content_id=800&amp;department_id=2&amp;page_id=13&amp;type=news">市立幼兒園115學年度變更公告</a></li>
+<li><a href="https://www.comptw.com/kindergartens/%E8%87%BA%E5%8D%97%E5%B8%82/%E6%AD%B8%E4%BB%81%E5%8D%80">comptw 歸仁區幼兒園清單（第三方）</a></li>
+<li><a href="https://w3fs.tainan.gov.tw/Download.ashx?n=6Ie65Y2X5biCMTEw5bm05bqm5YWs56uL5bm85YWS5ZyS5paw55Sf5YWl5ZyS5rOo5oSP5LqL6aCFLS0xMTAuMDIuMjQucGRm&amp;u=LzAwMS9VcGxvYWQvMTgyL3JlbGZpbGUvMTkyNzEvNzc0ODA4NS8zOTRiMjRhNC03MjNmLTRkM2EtYTc2Ni00YTUwMzBhNDFlNWEucGRm">臺南市110學年度公立幼兒園新生入園注意事項</a></li>
+<li><a href="https://schoolweb4.tn.edu.tw/~paes_webschool/modules/tad_uploader/index.php?cat_sn=0&amp;cfsn=75&amp;fn=%E5%85%AC%E5%B9%BC%E7%B0%A1%E7%AB%A0_2%E5%B0%88%E5%92%8C3-5%E6%AD%B2%E3%80%90%E4%B8%80%E8%88%AC%E7%89%88%E3%80%91_213x01+%281%29.pdf&amp;op=dlfile">博愛附幼115學年度簡章（2專和3-5歲）</a></li>
+<li><a href="https://www.gov.tw/News_Content_26_872838">我的E政府 115年公幼招生總整理</a></li>
+<li><a href="https://law.taichung.gov.tw/LawContent.aspx?id=GL002063">臺中市注意事項（非臺南，僅參考）</a></li>
+<li><a href="https://www.tn.edu.tw/wp-content/uploads/2023/05/114%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AC%AC1%E5%AD%B8%E6%9C%9F%E6%BA%96%E5%85%AC%E5%85%B1%E6%95%99%E4%BF%9D%E6%9C%8D%E5%8B%99%E6%A9%9F%E6%A7%8B%E5%90%8D%E5%96%AE-pdf-1.pdf">臺南市114學年度第1學期準公共名單</a></li>
+<li><a href="https://www.tn.edu.tw/wp-content/uploads/2023/05/113%E5%AD%B8%E5%B9%B4%E5%BA%A6%E6%BA%96%E5%85%AC%E5%85%B1%E5%B9%BC%E5%85%92%E5%9C%92%E5%90%8D%E5%96%AE-pdf.pdf">臺南市113學年度準公共名單</a></li>
+<li><a href="https://zumei.topschool.tw/FilePools/2059/SCHDM01/2026020611433895F65140.pdf">至美幼兒園115學年度準公共招生簡章</a></li>
+<li><a href="https://www.kindyinfo.com/preschool/a9f6694e-80e7-543d-a6ed-44e60fd45c63">幼園通（第三方）各園頁</a></li>
+<li><a href="https://zusun.topschool.tw/">至善幼兒園官網</a></li>
+<li><a href="http://k711.ednoland.com.tw/">舊園所電話名錄（舊資料）</a></li>
+<li><a href="https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001909">教育部育兒津貼及就學補助作業要點（115/8/28修正）</a></li>
+<li><a href="https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001795">教育部準公共教保服務作業要點</a></li>
+<li><a href="https://kidedu.ntpc.edu.tw/p/16-1000-14725.php">新北市教育局：115學年度準公共收據加註繳費上限</a></li>
+<li><a href="https://born.taipei/cp.aspx?n=1FCCAAA79B1EBCFA">臺北市助您好孕 2-5歲幼兒園篇（金額）</a></li>
+</ol></details></section></main>
+<script>
+var T=new Date("2028-03-06T08:30:00+08:00").getTime();
+function u(){var x=Math.max(0,T-Date.now());d.textContent=Math.floor(x/864e5);h.textContent=Math.floor(x/36e5)%24;m.textContent=Math.floor(x/6e4)%60;s.textContent=Math.floor(x/1e3)%60}
+u();setInterval(u,1000);
+document.querySelectorAll('.todo input').forEach(function(c){try{c.checked=localStorage.getItem('pr_'+c.dataset.k)==='1'}catch(e){}c.onchange=function(){try{localStorage.setItem('pr_'+c.dataset.k,c.checked?'1':'0')}catch(e){}}});
+
+(function(){var b=document.body,k='pr_theme',t;try{t=localStorage.getItem(k)}catch(e){}
+if(location.hash==='#light')t='light';if(location.hash==='#dark')t='dark';
+if(t==='light')b.classList.add('light');
+themeBtn.onclick=function(){b.classList.toggle('light');try{localStorage.setItem(k,b.classList.contains('light')?'light':'dark')}catch(e){}};})();
+</script><script>
+(function(){var HOME={"lat": 22.929211101739, "lon": 120.288612962547},K=[{"n": "沙崙國際高中附幼", "t": "pub", "ty": "公立", "a": "歸仁六路2號", "lat": 22.929066, "lon": 120.281558, "ck": 0.88, "cm": 2, "fk": 0.89, "fm": 12}, {"n": "大潭國小附幼", "t": "pub", "ty": "公立", "a": "中正南路三段97號", "lat": 22.91412, "lon": 120.27173, "ck": 2.87, "cm": 7, "fk": 2.85, "fm": 39}, {"n": "新才華", "t": "qp", "ty": "準公共", "a": "中正南路一段588號", "lat": 22.958934, "lon": 120.285141, "ck": 4.3, "cm": 6, "fk": 4.31, "fm": 58}, {"n": "仁愛", "t": "qp", "ty": "準公共", "a": "沙崙北路550號", "lat": 22.957271, "lon": 120.302982, "ck": 4.58, "cm": 8, "fk": 4.18, "fm": 56}, {"n": "紅瓦厝國小附幼", "t": "pub", "ty": "公立", "a": "信義南路98號", "lat": 22.962793, "lon": 120.298872, "ck": 4.75, "cm": 9, "fk": 4.69, "fm": 63}, {"n": "至美", "t": "qp", "ty": "準公共", "a": "民權南路191巷45號", "lat": 22.963193, "lon": 120.288887, "ck": 5.03, "cm": 8, "fk": 5.16, "fm": 69}, {"n": "歸南國小附幼", "t": "pub", "ty": "公立", "a": "民權南路171號", "lat": 22.964457, "lon": 120.288178, "ck": 5.06, "cm": 8, "fk": 5.44, "fm": 73}, {"n": "育仁", "t": "pv", "ty": "一般私幼", "a": "民權南路116號", "lat": 22.96462, "lon": 120.287602, "ck": 5.06, "cm": 8, "fk": 5.45, "fm": 73}, {"n": "中美", "t": "pv", "ty": "一般私幼", "a": "大順街120號", "lat": 22.965365, "lon": 120.289272, "ck": 5.31, "cm": 9, "fk": 5.32, "fm": 71}, {"n": "媬能", "t": "qp", "ty": "準公共", "a": "公園路157巷60號", "lat": 22.962588, "lon": 120.296317, "ck": 5.81, "cm": 9, "fk": 4.67, "fm": 63}, {"n": "歸仁國小附幼", "t": "pub", "ty": "公立", "a": "文化街一段100號", "lat": 22.970048, "lon": 120.296484, "ck": 6.17, "cm": 9, "fk": 5.52, "fm": 74}, {"n": "至善", "t": "star", "ty": "準公共 ⭐重點關注", "a": "民生北街130號", "lat": 22.971596, "lon": 120.281258, "ck": 6.54, "cm": 8, "fk": 5.6, "fm": 75}, {"n": "吉尼斯", "t": "star", "ty": "準公共 ⭐重點關注", "a": "民權八街43號", "lat": 22.968271, "lon": 120.286826, "ck": 7.04, "cm": 9, "fk": 5.82, "fm": 78}, {"n": "文化國小附幼", "t": "pub", "ty": "公立", "a": "文化街二段136號", "lat": 22.971089, "lon": 120.289072, "ck": 7.3, "cm": 9, "fk": 5.89, "fm": 79}, {"n": "歸園", "t": "pv", "ty": "一般私幼", "a": "文化街二段55號", "lat": 22.969863, "lon": 120.291579, "ck": 7.46, "cm": 10, "fk": 5.61, "fm": 75}, {"n": "巨光", "t": "pv", "ty": "一般私幼", "a": "文化北街162號", "lat": 22.972695, "lon": 120.288789, "ck": 7.47, "cm": 10, "fk": 6.12, "fm": 82}, {"n": "佳音", "t": "pv", "ty": "一般私幼", "a": "大廟一街149號", "lat": 22.994279, "lon": 120.275159, "ck": 8.49, "cm": 10, "fk": 8.38, "fm": 112}, {"n": "保西國小附幼", "t": "pub", "ty": "公立", "a": "中正北路三段60號", "lat": 22.99219, "lon": 120.293529, "ck": 9.48, "cm": 11, "fk": 8.18, "fm": 110}],C={pub:'#3b82f6',qp:'#22c55e',pv:'#9ca3af',star:'#ffc83d'};
+if(!window.L){document.getElementById('map').innerHTML='<p style="padding:20px">地圖載入失敗（需連網）。</p>';return;}
+var m=L.map('map').setView([HOME.lat,HOME.lon],13),tl;
+function tiles(){var lt=document.body.classList.contains('light');if(tl)m.removeLayer(tl);
+tl=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19,className:lt?'':'darktiles'}).addTo(m);}
+tiles();themeBtn.addEventListener('click',tiles);
+L.marker([HOME.lat,HOME.lon]).addTo(m).bindPopup('<b>🏠 家</b><br>高發二路311號F棟（6F-3）');
+var b=[[HOME.lat,HOME.lon]];
+K.forEach(function(k){var s=k.t==='star';b.push([k.lat,k.lon]);
+L.circleMarker([k.lat,k.lon],{radius:s?11:8,color:s?'#8a6500':'#111',weight:s?3:1,fillColor:C[k.t],fillOpacity:.95}).addTo(m)
+.bindPopup('<b>'+(s?'⭐ ':'')+k.n+'</b><br>'+k.ty+'<br>'+k.a+'<br>🚗 '+k.ck+' km／約 '+k.cm+' 分<br>🚶 '+k.fk+' km／約 '+k.fm+' 分<br><small>估算（OSRM）</small>');});
+m.fitBounds(b,{padding:[20,20]});
+var lg=L.control({position:'bottomright'});lg.onAdd=function(){var d=L.DomUtil.create('div');d.style.cssText='background:#fff;color:#222;padding:6px 8px;border-radius:6px;font-size:12px';
+d.innerHTML='🏠 家<br><span style="color:#3b82f6">●</span> 公立<br><span style="color:#22c55e">●</span> 準公共<br><span style="color:#ffc83d">●</span> ⭐ 重點關注<br><span style="color:#9ca3af">●</span> 一般私幼';return d};lg.addTo(m);
+document.querySelectorAll('#dtab th[data-c]').forEach(function(th){var asc=true;th.onclick=function(){var c=+th.dataset.c,tb=document.querySelector('#dtab tbody');
+Array.from(tb.rows).sort(function(a,z){return (a.cells[c].dataset.v-z.cells[c].dataset.v)*(asc?1:-1)}).forEach(function(r){tb.appendChild(r)});asc=!asc;};});
+window.__mapok=true;})();
+</script><script>(function(){var T=new Date("2028-03-06T08:30:00+08:00").getTime();function g(){var e=document.getElementById('gd');if(e)e.textContent=Math.max(0,Math.floor((T-Date.now())/864e5))}g();setInterval(g,60000);
+function nx(){var l=Array.from(document.querySelectorAll('.todo label')).find(function(x){return !x.querySelector('input').checked});var n=document.getElementById('nexttodo');if(n)n.innerHTML=l?l.querySelector('span').innerHTML:'全部完成 🎉'}
+nx();document.querySelectorAll('.todo input').forEach(function(c){c.addEventListener('change',nx)});})();</script></body></html>
